@@ -18,7 +18,7 @@ interface Tercero {
   contacto: string;
 }
 
-Modal.setAppElement('#root'); // Asegúrate de cambiar '#root' al ID de tu div raíz
+Modal.setAppElement('#root');
 
 export default function TercerosModal() {
   const [isOpen, setIsOpen] = useState(false);

@@ -1,0 +1,161 @@
+/* Estilos generales */
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #70db90; /* bg-green-50 */
+  /* background-image: url(https://wallpapercave.com/wp/mm5YxH7.jpg); */
+  background-size: cover;
+}
+
+/* Tarjeta */
+.card {
+  width: 350px;
+  background-color: #FFFFFF;
+  box-shadow: 0 4px 6px rgba(139, 6, 6, 0.1);
+}
+
+/* Encabezado de la tarjeta */
+.card-header {
+  padding: 20px;
+  text-align: center;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2f855a; /* text-green-700 */
+}
+
+.card-description {
+  color: #38a169; /* text-green-600 */
+  padding: .3rem;
+  font-size: 12px;
+}
+
+/* Contenedor de Tabs */
+.tabs {
+  width: 100%;
+}
+
+.tabs-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tabs-trigger {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #38a169;
+  cursor: pointer;
+}
+
+.tabs-trigger.active {
+  border-bottom: 2px solid #38a169;
+}
+
+/* Contenido de los Tabs */
+.tabs-content {
+  display: block;
+}
+
+.form-fields {
+  display: grid;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: .3rem;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  margin-right: 10px;
+  color: #38a169;
+}
+
+/* Estilo del campo de entrada */
+.input {
+  padding-left: 36px;  /* Espacio para el ícono */
+  padding: 10px;  /* Asegura un padding uniforme */
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #e2e8f0; /* border-gray-200 */
+  background-color: #f7fafc;
+  box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total */
+}
+
+/* Enfoque del campo de entrada */
+.input:focus {
+  outline: none;
+  border-color: #38a169;
+}
+
+/* Botones */
+.button-outline {
+  width: 100%;
+  padding: 12px 0;
+  border: 1px solid #38a169;
+  background-color: transparent;
+  color: #38a169;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.button-outline:hover {
+  background-color: #38a169;
+  color: white;
+}
+
+.button-main {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px 0;
+  background-color: #38a169;
+  color: white;
+  font-weight: bold;
+  transition: all 0.3s;
+  cursor: pointer;
+  border: none;
+}
+
+.button-main:hover {
+  background-color: #2f855a;
+}
+
+label {
+  font-size: 10px;
+}
+
+.password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+input[type="password"]{
+  padding-right: 30px;
+}
+
+button.toggle-password {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+}

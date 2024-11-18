@@ -1,0 +1,46 @@
+  .containerM {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .titleM{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  .gridM {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+  }
+  
+  .cardM {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .cardM:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cardM-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .iconM {
+    font-size: 2rem;
+  }
+  
+  .cardM-title {
+    margin-top: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  

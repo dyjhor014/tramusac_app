@@ -76,7 +76,7 @@
     padding: 2rem;
     border-radius: 8px;
     max-width: 100%;
-    height: 55vh;
+    height: 45vh;
     margin: auto;
     position: relative;
   }
@@ -119,6 +119,9 @@
  /*  .modal-form input[type="checkbox"] {
     margin-left: 0;
   } */
+   #nombreCorto, #ruc{
+    padding: .2rem;
+   }
   
   .modal-form button {
     margin-top: 15px;
@@ -133,4 +136,3 @@
   .modal-form button:hover {
     background-color: #0056b3;
   }
-  

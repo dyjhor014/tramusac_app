@@ -43,3 +43,11 @@ h4, h5 {
   font-family: var(--font-heading);
   color: var(--color-secondary);
 }
+td {
+  font-family: var(--font-body);
+  font-size: 12px;
+}
+th {
+  font-family: var(--font-heading);
+  font-size: 12px;
+}

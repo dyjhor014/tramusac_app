@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import './Tercero.css';
 import Navbar from '../../ui/navbar/Navbar';
+import Footer from '../../ui/footer/Footer';
 import { Helmet } from 'react-helmet';
 import axios from 'axios';
 
@@ -280,6 +281,7 @@ export default function TercerosModal() {
           </tbody>
         </table>
       </div>
+      <Footer />
     </>
   );
 }

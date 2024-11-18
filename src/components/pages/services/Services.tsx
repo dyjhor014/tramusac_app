@@ -1,5 +1,6 @@
 import './Services.css';
 import Navbar from '../../ui/navbar/Navbar';
+import Footer from '../../ui/footer/Footer';
 
 export default function Services() {
 
@@ -116,6 +117,7 @@ export default function Services() {
           </div>
       </main>
     </div>
+    <Footer />
     </>
   );
 }

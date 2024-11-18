@@ -1,5 +1,6 @@
 import "./Maintenance.css";
 import Navbar from "../../ui/navbar/Navbar";
+import Footer from "../../ui/footer/Footer";
 
 interface Opcion {
   titulo: string;
@@ -42,6 +43,7 @@ export default function Maintenance() {
         ))}
       </div>
     </div>
+    <Footer />
     </>
   );
 };

@@ -4,6 +4,7 @@ import Dashboard from './components/pages/dashoboard/Dashboard';
 import Services from './components/pages/services/Services';
 import Maintenance from './components/pages/maintenance/Maintenance';
 import Tercero from './components/pages/tercero/Tercero';
+import Sedes from './components/pages/sede/Sede';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/maintenance" element={<Maintenance />} />
         <Route path="/tercero" element={<Tercero />} />
+        <Route path="/sede" element={<Sedes />} />
       </Routes>
     </Router>
   );

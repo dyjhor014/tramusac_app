@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Modal from 'react-modal';
-import './Tercero.css';
+import './Sede.css';
 import Navbar from '../../ui/navbar/Navbar';
 import Footer from '../../ui/footer/Footer';
 import { Helmet } from 'react-helmet';
@@ -14,18 +14,13 @@ interface Ejecutivo {
   telefono: string | null;
 }
 
-interface Tercero {
+interface Sede {
   _id: string;
-  razonSocial: string;
   nombreCorto: string | null;
-  ruc: string;
   direccion: string;
-  isProveedor: boolean;
-  isCliente: boolean;
-  sedes: string[];
-  ejecutivos: Ejecutivo[];
+  ubicacion: string;
+  chatId: string;
   contactos: string[];
-  residuo: string[];
   status: boolean;
   createdAt: string;
   updatedAt: string;
@@ -33,17 +28,15 @@ interface Tercero {
 
 Modal.setAppElement('#root');
 
-export default function TercerosModal() {
+export default function SedesModal() {
   let count = 1;
   const [isOpen, setIsOpen] = useState(false);
-  const [terceros, setTerceros] = useState<Tercero[]>([]);
+  const [sedes, setSedes] = useState<Sede[]>([]);
   const [formData, setFormData] = useState({
-    razonSocial: '',
     nombreCorto: '',
-    ruc: '',
     direccion: '',
-    isProveedor: false,
-    isCliente: false,
+    ubicacion: '',
+    chatId: '',
   });
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false); // Indicador de carga
@@ -58,30 +51,25 @@ export default function TercerosModal() {
         }
 
         const headers = { Authorization: `Bearer ${token}` };
-        const response = await axios.get<Tercero[]>(
-          'https://tramucertbackendv1-7c86fc636ef1.herokuapp.com/api/terceros/',
+        const response = await axios.get<Sede[]>(
+          'https://tramucertbackendv1-7c86fc636ef1.herokuapp.com/api/tercero_sedes/',
           { headers }
         );
 
         // Map data from API to the expected format
         const mappedData = response.data.map((item) => ({
           _id: item._id,
-          razonSocial: item.razonSocial,
           nombreCorto: item.nombreCorto || '',
-          ruc: item.ruc,
           direccion: item.direccion,
-          isProveedor: item.isProveedor,
-          isCliente: item.isCliente,
-          sedes: item.sedes || [],
-          ejecutivos: item.ejecutivos || [],
+          ubicacion: item.ubicacion,
+          chatId: item.chatId,
           contactos: item.contactos || [],
-          residuo: item.residuo || [],
           status: item.status,
           createdAt: item.createdAt,
           updatedAt: item.updatedAt,
         }));
 
-        setTerceros(mappedData);
+        setSedes(mappedData);
       } catch (err: any) {
         setError(err.message || 'Error al cargar datos');
       }
@@ -101,12 +89,8 @@ export default function TercerosModal() {
 
   // Validate form data
   const validateFormData = (): boolean => {
-    if (!formData.ruc.trim()) {
-      setError('RUC es obligatorio');
-      return false;
-    }
-    if (formData.ruc.length !== 11 || isNaN(Number(formData.ruc))) {
-      setError('RUC debe ser un número de 11 dígitos');
+    if (!formData.direccion.trim()) {
+      setError('Dirección es obligatorio');
       return false;
     }
     setError(null);
@@ -130,27 +114,25 @@ export default function TercerosModal() {
       const headers = { Authorization: `Bearer ${token}` };
 
       const response = await axios.post(
-        'https://tramucertbackendv1-7c86fc636ef1.herokuapp.com/api/terceros/crear',
+        'https://tramucertbackendv1-7c86fc636ef1.herokuapp.com/api/tercero_sedes/crear',
         {
-          ruc: formData.ruc,
+          direccion: formData.direccion,
           nombreCorto: formData.nombreCorto || undefined,
-          isProveedor: formData.isProveedor || false,
-          isCliente: formData.isCliente || false,
+          ubicacion: formData.ubicacion,
+          chatId: formData.chatId,
         },
         { headers }
       );
 
       // Agregar el nuevo tercero a la lista local
-      setTerceros((prev) => [...prev, response.data]);
+      setSedes((prev) => [...prev, response.data]);
 
       // Limpiar formulario y cerrar modal
       setFormData({
-        razonSocial: '',
         nombreCorto: '',
-        ruc: '',
         direccion: '',
-        isProveedor: false,
-        isCliente: false,
+        ubicacion: '',
+        chatId: '',
       });
       setIsOpen(false);
     } catch (err: any) {
@@ -164,7 +146,7 @@ export default function TercerosModal() {
     <>
       <Navbar />
       <Helmet>
-        <title>Terceros</title>
+        <title>Sedes</title>
       </Helmet>
       <div className="container">
         {/* Error message */}
@@ -174,26 +156,26 @@ export default function TercerosModal() {
         <Modal
           isOpen={isOpen}
           onRequestClose={() => setIsOpen(false)}
-          contentLabel="Crear Nuevo Tercero"
+          contentLabel="Crear Nueva Sede"
           className="custom-modal"
           overlayClassName="custom-overlay"
         >
           <div className="modal-header">
-            <h2>Crear Nuevo Tercero</h2>
+            <h2>Crear Nueva Sede</h2>
             <button onClick={() => setIsOpen(false)} className="close-btn">
               X
-            </button>
+            </button>                        
           </div>
           <form onSubmit={handleSubmit} className="modal-form">
-          <div>
-              <label htmlFor="ruc">RUC (obligatorio)</label>
+            <div>
+              <label htmlFor="direccion">Dirección (obligatorio)</label>
               <input
-                id="ruc"
-                name="ruc"
-                value={formData.ruc}
+                id="direccion"
+                name="direccion"
+                value={formData.direccion}
                 onChange={handleInputChange}
                 required
-                placeholder='20546650082'
+                placeholder='Dirección'
               />
             </div>
             <div>
@@ -206,38 +188,38 @@ export default function TercerosModal() {
                 placeholder='Nombre corto'
               />
             </div>
-            <div className="checkbox-group">
-              <div className="checkbox-item">
-                <input
-                  id="isProveedor"
-                  name="isProveedor"
-                  type="checkbox"
-                  checked={formData.isProveedor}
-                  onChange={handleInputChange}
-                />
-                <label htmlFor="isProveedor">Proveedor</label>
-              </div>
-              <div className="checkbox-item">
-                <input
-                  id="isCliente"
-                  name="isCliente"
-                  type="checkbox"
-                  checked={formData.isCliente}
-                  onChange={handleInputChange}
-                />
-                <label htmlFor="isCliente">Cliente</label>
-              </div>
+            <div>
+              <label htmlFor="ubicacion">Ubicación (obligatorio)</label>
+              <input
+                id="ubicacion"
+                name="ubicacion"
+                value={formData.ubicacion}
+                onChange={handleInputChange}
+                required
+                placeholder='Ubicación'
+              />
+            </div>
+            <div>
+              <label htmlFor="chatId">Chat ID (obligatorio)</label>
+              <input
+                id="chatId"
+                name="chatId"
+                value={formData.chatId}
+                onChange={handleInputChange}
+                required
+                placeholder='Chat ID'
+              />
             </div>
             {/* Botón de carga */}
             <button type="submit" className="submit-btn" disabled={loading}>
               {loading ? 'Creando...' : 'Crear'}
-            </button>
+            </button>                        
           </form>
         </Modal>
-        <h1 className="heading">Terceros: {terceros.length}</h1>
+        <h1 className="heading">Sedes: {sedes.length}</h1>
         {/* Button to open modal */}
         <button onClick={() => setIsOpen(true)} className="open-modal-btn">
-          Crear Tercero
+          Crear Sede
         </button>
         {/* Table */}
         <div className="table">
@@ -245,36 +227,24 @@ export default function TercerosModal() {
           <thead>
             <tr>
               <th>#</th>
-              <th>Razón Social</th>
               <th>Nombre Comercial</th>
-              <th>RUC</th>
               <th>Dirección</th>
-              <th>Proveedor</th>
-              <th>Cliente</th>
-              <th>Ejecutivos</th>
+              <th>Ubicación</th>
+              <th>Chat ID</th>
               <th>Contactos</th>
             </tr>
           </thead>
           <tbody>
-            {terceros.map((tercero) => (
-              <tr key={tercero._id}>
-                <td><a href={"tercero/id/"+tercero._id}>{count++}</a></td>
-                <td>{tercero.razonSocial}</td>
-                <td>{tercero.nombreCorto}</td>
-                <td>{tercero.ruc}</td>
-                <td>{tercero.direccion}</td>
-                <td>{tercero.isProveedor ? 'Sí' : 'No'}</td>
-                <td>{tercero.isCliente ? 'Sí' : 'No'}</td>
+            {sedes.map((sede) => (
+              <tr key={sede._id}>
+                <td><a href={"sede/id/"+sede._id}>{count++}</a></td>
+                <td>{sede.nombreCorto}</td>
+                <td>{sede.direccion}</td>
+                <td>{sede.ubicacion}</td>
+                <td>{sede.chatId}</td>
                 <td>
-                  {tercero.ejecutivos.map((ejecutivo) => (
-                    <div key={ejecutivo._id}>
-                      {ejecutivo.nombre} ({ejecutivo.correo || 'Sin correo'})
-                    </div>
-                  ))}
-                </td>
-                <td>
-                  {tercero.contactos.length > 0
-                    ? tercero.contactos.join(', ')
+                  {sede.contactos.length > 0
+                    ? sede.contactos.join(', ')
                     : 'Sin contactos'}
                 </td>
               </tr>

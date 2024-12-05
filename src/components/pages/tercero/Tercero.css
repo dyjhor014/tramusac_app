@@ -121,12 +121,9 @@
     font-weight: bold; /* Opcional: resalta los labels */
   }
   
- /*  .modal-form input[type="checkbox"] {
-    margin-left: 0;
-  } */
-   #nombreCorto, #ruc{
-    padding: .2rem;
-   }
+input[type="text"] {
+  padding: .5rem;
+}
   
   .modal-form button {
     margin-top: 15px;

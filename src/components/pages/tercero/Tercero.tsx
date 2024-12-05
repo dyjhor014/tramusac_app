@@ -188,6 +188,7 @@ export default function TercerosModal() {
           <div>
               <label htmlFor="ruc">RUC (obligatorio)</label>
               <input
+                type='text'
                 id="ruc"
                 name="ruc"
                 value={formData.ruc}
@@ -199,6 +200,7 @@ export default function TercerosModal() {
             <div>
               <label htmlFor="nombreCorto">Nombre Comercial (opcional)</label>
               <input
+                type='text'
                 id="nombreCorto"
                 name="nombreCorto"
                 value={formData.nombreCorto}

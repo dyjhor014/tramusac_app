@@ -1,6 +1,7 @@
 import "./Maintenance.css";
 import Navbar from "../../ui/navbar/Navbar";
 import Footer from "../../ui/footer/Footer";
+import { Helmet } from "react-helmet";
 
 interface Opcion {
   index: number;
@@ -18,8 +19,8 @@ const opciones: Opcion[] = [
   { index: 6, titulo: "Conductor", icono: <span className="icon">👤</span>, ruta: '/conductor' },
   { index: 7, titulo: "Usuario", icono: <span className="icon">🧑</span>, ruta: '/usuario' },
   { index: 8, titulo: "Relleno Sanitario", icono: <span className="icon">⛰️</span>, ruta: '/relojo' },
-  { index: 9, titulo: "Método de Pago", icono: <span className="icon">💳</span>, ruta: '/metodo' },
-  { index: 10, titulo: "Impuesto", icono: <span className="icon">🧾</span>, ruta: '/impuesto' },
+  /* { index: 9, titulo: "Método de Pago", icono: <span className="icon">💳</span>, ruta: '/metodo' },
+  { index: 10, titulo: "Impuesto", icono: <span className="icon">🧾</span>, ruta: '/impuesto' }, */
   { index: 11, titulo: "Coordinador", icono: <span className="icon">💼</span>, ruta: '/coordinador' },
   { index: 12, titulo: "Empresa Operadora", icono: <span className="icon">🏭</span>, ruta: '/empresa' },
 ];
@@ -27,6 +28,9 @@ const opciones: Opcion[] = [
 export default function Maintenance() {
   return (
     <>
+    <Helmet>
+      <title>Tramusac | Mantenimiento</title>
+    </Helmet>
     <Navbar />
     <div className="containerM">
     <h1 className="heading">Mantenimiento</h1>

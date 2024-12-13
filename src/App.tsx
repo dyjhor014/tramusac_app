@@ -5,6 +5,7 @@ import Services from './components/pages/services/Services';
 import Maintenance from './components/pages/maintenance/Maintenance';
 import Tercero from './components/pages/tercero/Tercero';
 import Sedes from './components/pages/sede/Sede';
+import Residuo from './components/pages/residuo/Residuo';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/maintenance" element={<Maintenance />} />
         <Route path="/tercero" element={<Tercero />} />
         <Route path="/sede" element={<Sedes />} />
+        <Route path="/residuo" element={<Residuo />} />
       </Routes>
     </Router>
   );

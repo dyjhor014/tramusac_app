@@ -7,6 +7,7 @@ import Tercero from './components/pages/tercero/Tercero';
 import Sedes from './components/pages/sede/Sede';
 import Residuo from './components/pages/residuo/Residuo';
 import Estado from './components/pages/estado/Estado';
+import Vehiculo from './components/pages/vehiculo/Vehiculo';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/sede" element={<Sedes />} />
         <Route path="/residuo" element={<Residuo />} />
         <Route path="/estado" element={<Estado />} />
+        <Route path="/vehiculo" element={<Vehiculo />} />
       </Routes>
     </Router>
   );

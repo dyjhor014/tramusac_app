@@ -176,13 +176,13 @@ export default function RellenoSanitario() {
                 placeholder="Descripcion"
               />
               <label htmlFor="tipo">Tipo (obligatorio)</label>
-              <select name="tipo" id="tipo" value={formData.tipo} onChange={(e) => handleInputChange(e as unknown as React.ChangeEvent<HTMLInputElement>)}>
+              <select required name="tipo" id="tipo" value={formData.tipo} onChange={(e) => handleInputChange(e as unknown as React.ChangeEvent<HTMLInputElement>)}>
                 <option value="" disabled>
                   -- Selecciona un tipo --
                 </option>
-                <option value="PE">peligrosos</option>
-                <option value="NP">no peligrosos</option>
-                <option value="PENP">peligrosos y no peligrosos</option>
+                <option value="PE">Peligrosos</option>
+                <option value="NP">No peligrosos</option>
+                <option value="PENP">Peligrosos y no peligrosos</option>
               </select>
               <label htmlFor="direccion">Direccion (obligatorio)</label>
               <input

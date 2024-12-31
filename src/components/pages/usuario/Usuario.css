@@ -1,0 +1,9 @@
+.custom-modal-usuario {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 100%;
+    height: fit-content;
+    margin: auto;
+    position: relative;
+}

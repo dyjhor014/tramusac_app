@@ -9,6 +9,7 @@ import Residuo from './components/pages/residuo/Residuo';
 import Estado from './components/pages/estado/Estado';
 import Vehiculo from './components/pages/vehiculo/Vehiculo';
 import RellenoSanitario from './components/pages/relleno_sanitario/RellenoSanitario';
+import Usuario from './components/pages/usuario/Usuario';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path="/estado" element={<Estado />} />
         <Route path="/vehiculo" element={<Vehiculo />} />
         <Route path="/relleno_sanitario" element={<RellenoSanitario />} />
+        <Route path="/usuario" element={<Usuario />} />
       </Routes>
     </Router>
   );

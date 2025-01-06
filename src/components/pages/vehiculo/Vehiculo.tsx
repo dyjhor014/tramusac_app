@@ -10,7 +10,7 @@ interface Vehiculo {
   _id: string;
   marca: string;
   placa: string;
-  capacidad: number | null;
+  capacidad: number;
   color: string;
   serie: string;
   nroEjes: number | null;
@@ -84,18 +84,22 @@ export default function Vehiculo() {
 
   // Handle form input changes
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value, type } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: type === 'number' ? (value ? parseFloat(value) : null) : value,
     }));
-  };
+  };  
 
   // Validate form data
   const validateFormData = (): boolean => {
 
     if (!formData.placa.trim()) {
       setError('Placa es obligatorio');
+      return false;
+    }
+    if (formData.capacidad === null) {
+      setError('Capacidad es obligatorio');
       return false;
     }
     setError(null);
@@ -134,7 +138,7 @@ export default function Vehiculo() {
         },
         { headers }
       );
-
+      console.log(response.data);
       // Agregar el nuevo vehiculo a la lista local
       setVehiculos((prev) => [...prev, response.data]);
 
@@ -195,6 +199,20 @@ export default function Vehiculo() {
                 placeholder="placa"
               />
             </div>
+            <div>
+              <label htmlFor="capacidad">Capacidad (obligatorio)</label>
+              <input
+                type="number"
+                id="capacidad"
+                name="capacidad"
+                value={formData.capacidad ?? ''}
+                onChange={handleInputChange}
+                placeholder="Capacidad"
+                min={0}
+                max={35}
+                required
+                />
+            </div>
             {/* Botón de carga */}
             <button type="submit" className="submit-btn" disabled={loading}>
               {loading ? "Creando..." : "Crear"}
@@ -231,7 +249,8 @@ export default function Vehiculo() {
                   </td>
                   <td>{vehiculo.marca}</td>
                   <td>{vehiculo.placa}</td>
-                  <td>{vehiculo.capacidad}</td>
+                  {/* si el campo es null, muestra el texto "Sin Capacidad" */}
+                  {vehiculo.capacidad ? <td>{vehiculo.capacidad} TN</td> : <td>Sin Capacidad</td>}
                   <td>{vehiculo.color}</td>
                   <td>{vehiculo.serie}</td>
                   <td>{vehiculo.nroEjes}</td>

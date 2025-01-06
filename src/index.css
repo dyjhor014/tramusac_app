@@ -52,3 +52,7 @@ th {
   font-family: var(--font-heading);
   font-size: 12px;
 }
+
+input[type="number"], input[type="text"]{
+  text-transform: uppercase;
+}

@@ -85,9 +85,10 @@ export default function Vehiculo() {
   // Handle form input changes
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type } = e.target;
+  
     setFormData((prev) => ({
       ...prev,
-      [name]: type === 'number' ? (value ? parseFloat(value) : null) : value,
+      [name]: type === "number" && value !== "" ? parseFloat(value) : value === "" ? null : value,
     }));
   };  
 
@@ -197,6 +198,8 @@ export default function Vehiculo() {
                 onChange={handleInputChange}
                 required
                 placeholder="placa"
+                minLength={6}
+                maxLength={6}
               />
             </div>
             <div>
@@ -210,6 +213,7 @@ export default function Vehiculo() {
                 placeholder="Capacidad"
                 min={0}
                 max={35}
+                step={0.1}
                 required
                 />
             </div>
